@@ -953,6 +953,31 @@
             text-security: disc;
         }
 
+        /* Security warning card */
+        .security-warning-card {
+            background: rgba(255, 180, 171, 0.15);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1.25rem;
+            border: none;
+        }
+
+        [data-theme="light"] .security-warning-card {
+            background: rgba(186, 26, 26, 0.1);
+        }
+
+        .u-blue {
+            color: var(--md-sys-color-primary);
+            text-decoration-thickness: 2px;
+            text-underline-offset: 2px;
+        }
+
+        .u-red {
+            color: var(--md-sys-color-error);
+            text-decoration-thickness: 2px;
+            text-underline-offset: 2px;
+        }
+
         /* Tablet styles */
         @media (min-width: 768px) and (max-width: 1023px) {
             .nav-header-wrapper {
@@ -1476,10 +1501,12 @@
             </div>
             <div class="help-text" style="font-size: 0.9rem; color: var(--md-sys-color-on-surface);">
                 <p style="margin-bottom: 1rem; font-size: 1rem;"><strong>Your privacy is protected.</strong> Before downloading, please note:</p>
+                <div class="security-warning-card">
+                    <strong>Safe Storage:</strong> Ensure you store the downloaded CSV in a <u class="u-blue">secure location</u> and <u class="u-red">delete</u> it after importing to Bitwarden as it contains <u class="u-red">plain passwords and notes</u>.
+                </div>
                 <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem; line-height: 1.6;">
                     <li><strong>100% Local Processing:</strong> All data formatting happens entirely on your device.</li>
                     <li><strong>No Server Uploads:</strong> Your sensitive credentials have not been sent to any external server.</li>
-                    <li><strong>Safe Storage:</strong> Ensure you store the downloaded CSV in a secure location and delete it after importing to Bitwarden.</li>
                 </ul>
             </div>
             <div class="modal-actions">
