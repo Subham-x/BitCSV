@@ -1351,7 +1351,7 @@
 
             <div class="card actions-section" style="grid-column: 1 / -1;">
                 <div class="button-group">
-                    <button class="btn btn-primary" onclick="generateCSV()">
+                    <button class="btn btn-primary" onclick="prepareDownload()">
                         <span class="material-symbols-rounded">download</span>
                         Generate & Download CSV
                     </button>
@@ -1379,6 +1379,15 @@
                     <div>
                         <strong>Privacy & Security:</strong> All processing happens entirely in your browser. No data is transmitted to any server.
                     </div>
+                </div>
+            </div>
+            
+            <!-- Security Notice below last card -->
+            <div class="security-footer" style="grid-column: 1 / -1; margin-top: 0.5rem; padding: 1.5rem; background: var(--md-sys-color-surface-variant); border-radius: 16px; border: 1px solid var(--md-sys-color-outline-variant); display: flex; align-items: flex-start; gap: 1rem; animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1); animation-fill-mode: both;">
+                <span class="material-symbols-rounded" style="color: var(--md-sys-color-primary); font-size: 2rem;">gpp_good</span>
+                <div>
+                    <h3 style="font-size: 1.1rem; color: var(--md-sys-color-on-surface); margin-bottom: 0.5rem; font-weight: 600;">Security First Approach</h3>
+                    <p style="font-size: 0.9rem; color: var(--md-sys-color-on-surface-variant); line-height: 1.5;">This BitCSV Generator operates completely as a static webpage. No data is tracked, logged, or sent to any server. Your generated CSVs are created locally within your browser's memory, ensuring your sensitive credentials never leave your device.</p>
                 </div>
             </div>
         </div>
@@ -1448,6 +1457,36 @@
                 <button class="btn btn-primary" onclick="processAutoExtractWebsites()">
                     <span class="material-symbols-rounded">check</span>
                     Extract
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Security Download Notice Modal -->
+    <div class="modal" id="securityDownloadModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <span class="material-symbols-rounded" style="color: var(--md-sys-color-primary); vertical-align: middle; margin-right: 8px; font-size: 1.2rem;">security</span>
+                    Security Notice
+                </h3>
+                <button class="btn btn-remove" onclick="closeSecurityDownloadModal()">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
+            </div>
+            <div class="help-text" style="font-size: 0.9rem; color: var(--md-sys-color-on-surface);">
+                <p style="margin-bottom: 1rem; font-size: 1rem;"><strong>Your privacy is protected.</strong> Before downloading, please note:</p>
+                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem; line-height: 1.6;">
+                    <li><strong>100% Local Processing:</strong> All data formatting happens entirely on your device.</li>
+                    <li><strong>No Server Uploads:</strong> Your sensitive credentials have not been sent to any external server.</li>
+                    <li><strong>Safe Storage:</strong> Ensure you store the downloaded CSV in a secure location and delete it after importing to Bitwarden.</li>
+                </ul>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeSecurityDownloadModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="generateCSV()">
+                    <span class="material-symbols-rounded">download</span>
+                    Download Securely
                 </button>
             </div>
         </div>
@@ -1707,7 +1746,27 @@
             return str;
         }
 
+        function prepareDownload() {
+            // Get all credentials
+            const credentials = Array.from(document.querySelectorAll('.credential-entry')).map(entry => ({
+                username: entry.querySelector('.cred-username')?.value.trim() || '',
+                password: entry.querySelector('.cred-password')?.value.trim() || ''
+            })).filter(cred => cred.username || cred.password);
+
+            if (credentials.length === 0) {
+                alert('Please add at least one credential.');
+                return;
+            }
+
+            document.getElementById('securityDownloadModal').classList.add('active');
+        }
+
+        function closeSecurityDownloadModal() {
+            document.getElementById('securityDownloadModal').classList.remove('active');
+        }
+
         function generateCSV() {
+            closeSecurityDownloadModal();
             const folderName = document.getElementById('folderName').value.trim();
             const globalNotes = document.getElementById('globalNotes').value.trim();
             const sameNameActive = document.getElementById('sameNameToggle').checked;
