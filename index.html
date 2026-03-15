@@ -27,6 +27,38 @@
             --md-sys-color-on-error: #690005;
             --md-sys-color-success: #7dd87d;
             --md-sys-color-shadow: rgba(0, 0, 0, 0.3);
+            
+            /* Header specific */
+            --header-bg: rgba(15, 20, 25, 0.7);
+            --header-border: rgba(101, 171, 255, 0.15);
+            --body-bg: linear-gradient(135deg, #0a0e13 0%, #1a1f26 50%, #0f1419 100%);
+        }
+
+        [data-theme="light"] {
+            --md-sys-color-primary: #0061a4;
+            --md-sys-color-on-primary: #ffffff;
+            --md-sys-color-primary-container: #d0e4ff;
+            --md-sys-color-on-primary-container: #001d35;
+            --md-sys-color-secondary: #535f70;
+            --md-sys-color-on-secondary: #ffffff;
+            --md-sys-color-surface: #f8f9fb;
+            --md-sys-color-surface-variant: #e1e2ec;
+            --md-sys-color-surface-container: #eceef5;
+            --md-sys-color-surface-container-high: #e6e8ef;
+            --md-sys-color-surface-container-highest: #e0e2e9;
+            --md-sys-color-on-surface: #191c20;
+            --md-sys-color-on-surface-variant: #43474e;
+            --md-sys-color-outline: #73777f;
+            --md-sys-color-outline-variant: #c3c6cf;
+            --md-sys-color-error: #ba1a1a;
+            --md-sys-color-on-error: #ffffff;
+            --md-sys-color-success: #006e1c;
+            --md-sys-color-shadow: rgba(0, 0, 0, 0.1);
+            
+            /* Header specific */
+            --header-bg: rgba(255, 255, 255, 0.7);
+            --header-border: rgba(101, 171, 255, 0.2);
+            --body-bg: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 50%, #f0f2f5 100%);
         }
 
         * {
@@ -37,7 +69,7 @@
 
         body {
             font-family: 'Rubik', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #0a0e13 0%, #1a1f26 50%, #0f1419 100%);
+            background: var(--body-bg);
             color: var(--md-sys-color-on-surface);
             min-height: 100vh;
             padding: 1.25rem 1rem;
@@ -45,6 +77,7 @@
             line-height: 1.5;
             position: relative;
             overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         body::before {
@@ -101,29 +134,57 @@
             }
         }
 
-        /* Navigation Header with Liquid Glass Effect */
+        /* Navigation Header with Advanced Glass Effect */
         .nav-header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(15, 20, 25, 0.7);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid rgba(101, 171, 255, 0.15);
-            padding: 0.85rem 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 0.75rem;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3), 
-                        inset 0 1px 0 rgba(255, 255, 255, 0.05),
-                        0 8px 32px rgba(101, 171, 255, 0.1);
+            background: transparent;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            border-bottom: none;
+            padding: 1rem 1.5rem;
+            box-shadow: none;
             z-index: 1000;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        /* Animated gradient line at top - removed */
         .nav-header::before {
+            display: none;
+        }
+
+        /* Glass texture overlay - removed */
+        .nav-header::after {
+            display: none;
+        }
+
+        .nav-header-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(135deg, 
+                rgba(125, 216, 125, 0.15) 0%,
+                rgba(101, 171, 255, 0.15) 50%,
+                rgba(118, 75, 162, 0.15) 100%);
+            backdrop-filter: blur(30px) saturate(200%) brightness(1.1);
+            -webkit-backdrop-filter: blur(30px) saturate(200%) brightness(1.1);
+            border: 1px solid rgba(125, 216, 125, 0.3);
+            border-radius: 50px;
+            padding: 0.85rem 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1),
+                        0 2px 8px rgba(125, 216, 125, 0.15),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-header-wrapper::before {
             content: '';
             position: absolute;
             top: 0;
@@ -131,37 +192,12 @@
             right: 0;
             height: 2px;
             background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(101, 171, 255, 0.6) 20%,
-                rgba(101, 171, 255, 0.8) 50%, 
-                rgba(101, 171, 255, 0.6) 80%,
+                transparent 0%,
+                rgba(125, 216, 125, 0.6) 20%,
+                rgba(101, 171, 255, 0.6) 50%,
+                rgba(125, 216, 125, 0.6) 80%,
                 transparent 100%);
-            opacity: 0.5;
-        }
-
-        .nav-header::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(180deg, 
-                rgba(101, 171, 255, 0.05) 0%, 
-                transparent 100%);
-            pointer-events: none;
-        }
-
-        .nav-header-wrapper {
-            max-width: 1400px;
-            margin: 0 auto;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 0.75rem;
-            position: relative;
-            z-index: 1;
+            border-radius: 50px 50px 0 0;
         }
 
         @media (min-width: 1024px) {
@@ -176,57 +212,124 @@
             }
         }
 
+        /* Branding */
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--md-sys-color-on-surface);
+            transition: all 0.3s ease;
+        }
+
+        .nav-brand:hover {
+            transform: translateY(-1px);
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .brand-name {
+            font-size: 1rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--md-sys-color-primary) 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .brand-tagline {
+            font-size: 0.65rem;
+            color: var(--md-sys-color-on-surface-variant);
+            font-weight: 500;
+        }
+
         .nav-links {
             display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            flex: 1;
+            gap: 1.5rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-links-wrapper {
+            display: contents;
         }
 
         .nav-link {
-            padding: 0.45rem 1rem;
-            background: rgba(101, 171, 255, 0.08);
-            border: 1px solid rgba(101, 171, 255, 0.15);
-            border-radius: 50px;
             color: var(--md-sys-color-on-surface-variant);
-            font-size: 0.8rem;
+            font-size: 0.875rem;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 0.35rem;
-            backdrop-filter: blur(10px);
+            gap: 0.4rem;
+            padding: 0.35rem 0;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--md-sys-color-primary), #764ba2);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .nav-link:hover {
-            background: rgba(101, 171, 255, 0.15);
-            border-color: var(--md-sys-color-primary);
             color: var(--md-sys-color-primary);
-            transform: translateY(-1px);
+        }
+
+        .nav-link:hover::after {
+            transform: scaleX(1);
         }
 
         .nav-link.active {
-            background: var(--md-sys-color-primary);
-            color: var(--md-sys-color-on-primary);
-            border-color: var(--md-sys-color-primary);
+            color: var(--md-sys-color-primary);
+        }
+
+        .nav-link.active::after {
+            transform: scaleX(1);
         }
 
         .nav-link .material-symbols-rounded {
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
 
         .nav-actions {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.75rem;
             align-items: center;
         }
 
-        .password-toggle {
-            padding: 0.45rem 1rem;
+        /* Theme toggle and Password toggle - keep capsule style */
+        .icon-toggle {
+            padding: 0.5rem 1rem;
             background: rgba(101, 171, 255, 0.08);
-            border: 1px solid rgba(101, 171, 255, 0.15);
+            border: 1px solid rgba(101, 171, 255, 0.2);
             border-radius: 50px;
             color: var(--md-sys-color-on-surface-variant);
             font-size: 0.8rem;
@@ -235,23 +338,25 @@
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
-            gap: 0.35rem;
+            gap: 0.4rem;
+            backdrop-filter: blur(10px);
         }
 
-        .password-toggle:hover {
+        .icon-toggle:hover {
             background: rgba(101, 171, 255, 0.15);
             border-color: var(--md-sys-color-primary);
             color: var(--md-sys-color-primary);
+            transform: translateY(-1px);
         }
 
-        .password-toggle.active {
+        .icon-toggle.active {
             background: var(--md-sys-color-primary);
             color: var(--md-sys-color-on-primary);
             border-color: var(--md-sys-color-primary);
         }
 
-        .password-toggle .material-symbols-rounded {
-            font-size: 1rem;
+        .icon-toggle .material-symbols-rounded {
+            font-size: 1.1rem;
         }
 
         h1 {
@@ -263,6 +368,7 @@
             background-clip: text;
             margin-bottom: 0.3rem;
             letter-spacing: -0.02em;
+            word-break: break-word;
         }
 
         .subtitle {
@@ -272,6 +378,7 @@
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
+            flex-wrap: wrap;
         }
 
         .material-symbols-rounded {
@@ -366,7 +473,7 @@
             top: 50%;
             transform: translateY(-50%);
             font-weight: 500;
-            font-size: 0.875rem;
+            font-size: 0.95rem;
             color: var(--md-sys-color-on-surface-variant);
             transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             pointer-events: none;
@@ -375,23 +482,24 @@
         }
 
         label.textarea-label {
-            top: 1rem;
+            top: 1.25rem;
             transform: none;
         }
 
         input[type="text"],
         textarea {
             width: 100%;
-            padding: 0.85rem;
-            padding-top: 1.35rem;
+            padding: 1rem;
+            padding-top: 1.5rem;
             background: var(--md-sys-color-surface-variant);
             border: 1px solid var(--md-sys-color-outline-variant);
             border-radius: 8px 8px 0 0;
             border-bottom: 2px solid var(--md-sys-color-outline);
             color: var(--md-sys-color-on-surface);
             font-family: 'Rubik', sans-serif;
-            font-size: 0.875rem;
+            font-size: 0.95rem;
             transition: all 0.2s ease;
+            min-height: 52px;
         }
 
         input[type="text"]:focus,
@@ -406,23 +514,23 @@
         input[type="text"]:not(:placeholder-shown) + label,
         textarea:focus + label,
         textarea:not(:placeholder-shown) + label {
-            top: 0.4rem;
-            font-size: 0.7rem;
+            top: 0.5rem;
+            font-size: 0.75rem;
             color: var(--md-sys-color-primary);
             transform: translateY(0);
         }
 
         textarea:focus + label.textarea-label,
         textarea:not(:placeholder-shown) + label.textarea-label {
-            top: 0.4rem;
+            top: 0.5rem;
         }
 
         textarea {
-            min-height: 70px;
+            min-height: 80px;
             resize: vertical;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            padding-top: 1.35rem;
+            font-size: 0.875rem;
+            padding-top: 1.5rem;
         }
 
         /* Site entries - minimal, borderless */
@@ -489,10 +597,101 @@
             flex: 1;
         }
 
+        .credential-fields.with-name {
+            grid-template-columns: 1fr;
+        }
+
+        .credential-name-field {
+            grid-column: 1 / -1;
+        }
+
         @media (max-width: 767px) {
             .credential-fields {
                 grid-template-columns: 1fr;
             }
+        }
+
+        /* Same Name Toggle */
+        .same-name-control {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.85rem;
+            background: var(--md-sys-color-surface-variant);
+            border-radius: 10px;
+            border: 1px solid var(--md-sys-color-outline-variant);
+            margin-bottom: 0.85rem;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 26px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--md-sys-color-outline-variant);
+            transition: 0.3s;
+            border-radius: 26px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(22px);
+        }
+
+        .same-name-label {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .same-name-label-text {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--md-sys-color-on-surface);
+        }
+
+        .same-name-label-desc {
+            font-size: 0.75rem;
+            color: var(--md-sys-color-on-surface-variant);
+        }
+
+        #commonNameField {
+            display: none;
+        }
+
+        #commonNameField.active {
+            display: block;
         }
 
         .btn {
@@ -581,22 +780,27 @@
         .btn-remove {
             background: transparent;
             color: var(--md-sys-color-error);
-            padding: 0.35rem;
+            padding: 0;
             border-radius: 50%;
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            min-height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
         }
 
         .btn-remove:hover {
             background: rgba(255, 180, 171, 0.1);
+            border-color: var(--md-sys-color-error);
         }
 
         .btn-remove .material-symbols-rounded {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
         .button-group {
@@ -765,9 +969,25 @@
             text-security: disc;
         }
 
+        /* Tablet styles */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .nav-header-wrapper {
+                grid-template-columns: auto 1fr auto;
+                gap: 1.5rem;
+            }
+
+            .brand-text {
+                display: flex;
+            }
+
+            .nav-links {
+                gap: 1.25rem;
+            }
+        }
+
         @media (max-width: 767px) {
             body {
-                padding-top: 8rem;
+                padding-top: 9rem;
             }
 
             h1 {
@@ -789,27 +1009,179 @@
             }
 
             .nav-header {
-                padding: 0.75rem;
+                padding: 0.75rem 1rem;
+                background: transparent;
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
             }
 
             .nav-header-wrapper {
-                flex-direction: column;
-                gap: 0.65rem;
+                grid-template-columns: auto 1fr;
+                gap: 0.75rem;
+                align-items: start;
+                background: transparent;
+                border: none;
+                padding: 0;
+                box-shadow: none;
             }
 
-            .nav-links {
+            .nav-header-wrapper::before {
+                display: none;
+            }
+
+            /* Brand section - only icon visible */
+            .nav-brand {
+                justify-content: flex-start;
+                margin-bottom: 0;
+                margin-top: 0.25rem;
+            }
+
+            .brand-text {
+                display: none;
+            }
+
+            .brand-icon {
+                width: 42px;
+                height: 42px;
+                font-size: 1.1rem;
+            }
+
+            /* Right side container for navigation and actions */
+            .nav-links-wrapper {
+                display: flex;
+                flex-direction: column;
+                gap: 0.65rem;
                 width: 100%;
-                justify-content: center;
+            }
+
+            /* Navigation links in primary capsule with green accent */
+            .nav-links {
+                background: linear-gradient(135deg, 
+                    rgba(125, 216, 125, 0.15) 0%,
+                    rgba(101, 171, 255, 0.15) 50%,
+                    rgba(118, 75, 162, 0.12) 100%);
+                backdrop-filter: blur(20px) saturate(180%);
+                -webkit-backdrop-filter: blur(20px) saturate(180%);
+                border: 1.5px solid rgba(125, 216, 125, 0.35);
+                border-radius: 50px;
+                padding: 0.65rem 1rem;
+                gap: 1.25rem;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+                box-shadow: 0 4px 12px rgba(125, 216, 125, 0.15),
+                            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            }
+
+            .nav-links::-webkit-scrollbar {
+                display: none;
             }
 
             .nav-link {
-                font-size: 0.75rem;
-                padding: 0.4rem 0.85rem;
+                font-size: 0.85rem;
+                white-space: nowrap;
+                padding: 0.4rem 0;
             }
 
+            .nav-link .material-symbols-rounded {
+                font-size: 1.1rem;
+            }
+
+            /* Actions in secondary capsule */
             .nav-actions {
-                width: 100%;
-                justify-content: center;
+                justify-content: flex-start;
+                background: rgba(101, 171, 255, 0.08);
+                border: 1px solid rgba(101, 171, 255, 0.15);
+                border-radius: 50px;
+                padding: 0.5rem 0.85rem;
+                gap: 0.65rem;
+            }
+
+            .icon-toggle {
+                font-size: 0.8rem;
+                padding: 0.45rem 0.95rem;
+            }
+
+            /* Fix input fields in mobile - larger */
+            input[type="text"],
+            textarea {
+                font-size: 1rem;
+                padding: 1.2rem;
+                padding-top: 1.7rem;
+                min-height: 60px;
+            }
+
+            label {
+                font-size: 1rem;
+            }
+
+            label:not(.textarea-label) {
+                top: 50%;
+            }
+
+            input[type="text"]:focus + label,
+            input[type="text"]:not(:placeholder-shown) + label {
+                font-size: 0.8rem;
+                top: 0.6rem;
+            }
+
+            /* Fix credential and site entry layouts */
+            .credential-entry,
+            .site-entry {
+                padding: 1rem;
+            }
+
+            .credential-badge,
+            .site-badge {
+                width: 32px;
+                height: 32px;
+                font-size: 0.85rem;
+            }
+
+            /* Ensure circular remove button on mobile */
+            .btn-remove {
+                width: 40px;
+                height: 40px;
+                min-width: 40px;
+                min-height: 40px;
+                padding: 0;
+                border-radius: 50%;
+            }
+
+            .btn-remove .material-symbols-rounded {
+                font-size: 1.3rem;
+            }
+
+            .credential-fields {
+                gap: 1rem;
+            }
+
+            .input-group {
+                margin-bottom: 1rem;
+            }
+
+            /* Ensure remove button stays circular */
+            .btn-remove {
+                width: 38px;
+                height: 38px;
+                min-width: 38px;
+                min-height: 38px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-link {
+                font-size: 0.8rem;
+            }
+
+            .nav-link .material-symbols-rounded {
+                display: none;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                padding: 0.6rem 0.9rem;
             }
         }
     </style>
@@ -817,7 +1189,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>Bitwarden CSV Generator</h1>
+            <h1>BitCSV Generator</h1>
             <p class="subtitle">
                 <span class="material-symbols-rounded">lock</span>
                 Privacy-First Password Export Tool
@@ -832,29 +1204,43 @@
         <!-- Navigation Header -->
         <div class="nav-header">
             <div class="nav-header-wrapper">
-                <div class="nav-links">
-                    <a href="#folder" class="nav-link" onclick="scrollToSection('folder-section'); return false;">
-                        <span class="material-symbols-rounded">folder</span>
-                        Folder
-                    </a>
-                    <a href="#credentials" class="nav-link" onclick="scrollToSection('credentials-section'); return false;">
-                        <span class="material-symbols-rounded">badge</span>
-                        Credentials
-                    </a>
-                    <a href="#websites" class="nav-link" onclick="scrollToSection('websites-section'); return false;">
-                        <span class="material-symbols-rounded">language</span>
-                        Websites
-                    </a>
-                    <a href="#notes" class="nav-link" onclick="scrollToSection('notes-section'); return false;">
-                        <span class="material-symbols-rounded">note</span>
-                        Notes
-                    </a>
-                </div>
-                <div class="nav-actions">
-                    <button class="password-toggle" id="passwordToggle" onclick="togglePasswordVisibility()">
-                        <span class="material-symbols-rounded">visibility_off</span>
-                        <span id="toggleText">Hide</span>
-                    </button>
+                <a href="#" class="nav-brand" onclick="scrollToSection('folder-section'); return false;">
+                    <div class="brand-icon">BC</div>
+                    <div class="brand-text">
+                        <div class="brand-name">BitCSV</div>
+                        <div class="brand-tagline">Bitwarden CSV Generator</div>
+                    </div>
+                </a>
+
+                <div class="nav-links-wrapper">
+                    <div class="nav-links">
+                        <a href="#folder" class="nav-link" onclick="scrollToSection('folder-section'); return false;">
+                            <span class="material-symbols-rounded">folder</span>
+                            Folder
+                        </a>
+                        <a href="#credentials" class="nav-link" onclick="scrollToSection('credentials-section'); return false;">
+                            <span class="material-symbols-rounded">badge</span>
+                            Credentials
+                        </a>
+                        <a href="#websites" class="nav-link" onclick="scrollToSection('websites-section'); return false;">
+                            <span class="material-symbols-rounded">language</span>
+                            Websites
+                        </a>
+                        <a href="#notes" class="nav-link" onclick="scrollToSection('notes-section'); return false;">
+                            <span class="material-symbols-rounded">note</span>
+                            Notes
+                        </a>
+                    </div>
+
+                    <div class="nav-actions">
+                        <button class="icon-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle theme">
+                            <span class="material-symbols-rounded" id="themeIcon">light_mode</span>
+                        </button>
+                        <button class="icon-toggle" id="passwordToggle" onclick="togglePasswordVisibility()" title="Toggle password visibility">
+                            <span class="material-symbols-rounded">visibility_off</span>
+                            <span id="toggleText">Hide</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -880,6 +1266,25 @@
                     <span class="material-symbols-rounded">badge</span>
                     <h2 class="card-title">Credentials</h2>
                 </div>
+                
+                <div class="same-name-control">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="sameNameToggle" onchange="toggleSameName()">
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <div class="same-name-label">
+                        <div class="same-name-label-text">Use Same Name for All</div>
+                        <div class="same-name-label-desc">Apply one name to all credential entries</div>
+                    </div>
+                </div>
+
+                <div class="input-group" id="commonNameField">
+                    <div class="input-wrapper">
+                        <input type="text" id="commonName" placeholder=" ">
+                        <label for="commonName">Common Name</label>
+                    </div>
+                </div>
+
                 <div id="credentialsContainer"></div>
                 <div class="button-group" style="margin-top: 0.65rem;">
                     <button class="btn btn-secondary" onclick="addCredential()">
@@ -1033,6 +1438,66 @@
         let credentialCount = 0;
         let passwordsHidden = false;
 
+        // Theme toggle - detects system preference on load
+        function initTheme() {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (prefersDark) {
+                document.documentElement.removeAttribute('data-theme');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+            updateThemeIcon();
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                document.documentElement.removeAttribute('data-theme');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+            updateThemeIcon();
+        }
+
+        function updateThemeIcon() {
+            const themeIcon = document.getElementById('themeIcon');
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                themeIcon.textContent = 'dark_mode';
+            } else {
+                themeIcon.textContent = 'light_mode';
+            }
+        }
+
+        // Initialize theme on page load
+        initTheme();
+
+        function toggleSameName() {
+            const toggle = document.getElementById('sameNameToggle');
+            const commonNameField = document.getElementById('commonNameField');
+            const credentialEntries = document.querySelectorAll('.credential-entry');
+            
+            if (toggle.checked) {
+                commonNameField.classList.add('active');
+                // Hide individual name fields
+                credentialEntries.forEach(entry => {
+                    const nameField = entry.querySelector('.credential-name-field');
+                    if (nameField) {
+                        nameField.style.display = 'none';
+                    }
+                });
+            } else {
+                commonNameField.classList.remove('active');
+                // Show individual name fields
+                credentialEntries.forEach(entry => {
+                    const nameField = entry.querySelector('.credential-name-field');
+                    if (nameField) {
+                        nameField.style.display = 'block';
+                    }
+                });
+            }
+        }
+
         function scrollToSection(sectionId) {
             const element = document.getElementById(sectionId);
             if (element) {
@@ -1097,11 +1562,19 @@
             credentialCount++;
             const container = document.getElementById('credentialsContainer');
             const credEntry = document.createElement('div');
+            const sameNameActive = document.getElementById('sameNameToggle').checked;
+            
             credEntry.className = 'credential-entry';
             credEntry.id = `cred-${credentialCount}`;
             credEntry.innerHTML = `
                 <div class="credential-badge">${credentialCount}</div>
                 <div class="credential-fields">
+                    <div class="input-group credential-name-field" style="${sameNameActive ? 'display: none;' : ''}">
+                        <div class="input-wrapper">
+                            <input type="text" class="cred-name" id="cred-name-${credentialCount}" placeholder=" ">
+                            <label for="cred-name-${credentialCount}">Entry Name</label>
+                        </div>
+                    </div>
                     <div class="input-group">
                         <div class="input-wrapper">
                             <input type="text" class="cred-username" id="cred-username-${credentialCount}" placeholder=" ">
@@ -1217,93 +1690,58 @@
         function generateCSV() {
             const folderName = document.getElementById('folderName').value.trim();
             const globalNotes = document.getElementById('globalNotes').value.trim();
+            const sameNameActive = document.getElementById('sameNameToggle').checked;
+            const commonName = document.getElementById('commonName').value.trim();
             
+            // Get all sites (URLs)
             const sites = Array.from(document.querySelectorAll('.site-entry')).map(entry => ({
                 url: entry.querySelector('.site-url')?.value.trim() || ''
             })).filter(site => site.url);
 
+            // Get all credentials with names
             const credentials = Array.from(document.querySelectorAll('.credential-entry')).map(entry => ({
+                name: sameNameActive ? commonName : (entry.querySelector('.cred-name')?.value.trim() || ''),
                 username: entry.querySelector('.cred-username')?.value.trim() || '',
                 password: entry.querySelector('.cred-password')?.value.trim() || ''
             })).filter(cred => cred.username || cred.password);
 
-            if (sites.length === 0 && credentials.length === 0) {
-                alert('Please add at least one website or credential pair.');
+            if (credentials.length === 0) {
+                alert('Please add at least one credential.');
                 return;
             }
 
-            let csv = 'folder,favorite,type,name,notes,fields,reprompt,login_uri,login_username,login_password,login_totp\n';
+            // Bitwarden CSV format header
+            let csv = 'folder,favorite,type,name,notes,fields,reprompt,archivedDate,login_uri,login_username,login_password,login_totp\n';
 
-            if (sites.length > 0 && credentials.length > 0) {
-                sites.forEach(site => {
-                    credentials.forEach(cred => {
-                        let siteName = site.url;
-                        try {
-                            const urlObj = new URL(site.url.startsWith('http') ? site.url : 'https://' + site.url);
-                            siteName = urlObj.hostname.replace('www.', '');
-                        } catch (e) {}
-                        
-                        const row = [
-                            escapeCSV(folderName),
-                            '',
-                            'login',
-                            escapeCSV(siteName),
-                            escapeCSV(globalNotes),
-                            '',
-                            '',
-                            escapeCSV(site.url),
-                            escapeCSV(cred.username),
-                            escapeCSV(cred.password),
-                            ''
-                        ];
-                        csv += row.join(',') + '\n';
-                    });
-                });
-            } else if (sites.length > 0) {
-                sites.forEach(site => {
-                    let siteName = site.url;
-                    try {
-                        const urlObj = new URL(site.url.startsWith('http') ? site.url : 'https://' + site.url);
-                        siteName = urlObj.hostname.replace('www.', '');
-                    } catch (e) {}
-                    
-                    const row = [
-                        escapeCSV(folderName),
-                        '',
-                        'login',
-                        escapeCSV(siteName),
-                        escapeCSV(globalNotes),
-                        '',
-                        '',
-                        escapeCSV(site.url),
-                        '',
-                        '',
-                        ''
-                    ];
-                    csv += row.join(',') + '\n';
-                });
-            } else {
-                credentials.forEach((cred, idx) => {
-                    const row = [
-                        escapeCSV(folderName),
-                        '',
-                        'login',
-                        escapeCSV(`Credential ${idx + 1}`),
-                        escapeCSV(globalNotes),
-                        '',
-                        '',
-                        '',
-                        escapeCSV(cred.username),
-                        escapeCSV(cred.password),
-                        ''
-                    ];
-                    csv += row.join(',') + '\n';
-                });
-            }
+            // Create comma-separated URL list (no spaces)
+            const loginUri = sites.map(s => s.url).join(',');
 
+            // Generate one row per credential
+            credentials.forEach((cred, index) => {
+                const entryName = cred.name || `Entry ${index + 1}`;
+                
+                const row = [
+                    escapeCSV(folderName),
+                    '',  // favorite
+                    'login',
+                    escapeCSV(entryName),
+                    escapeCSV(globalNotes),
+                    '',  // fields
+                    '0', // reprompt
+                    '',  // archivedDate
+                    escapeCSV(loginUri),
+                    escapeCSV(cred.username),
+                    escapeCSV(cred.password),
+                    ''   // totp
+                ];
+                csv += row.join(',') + '\n';
+            });
+
+            // Display preview
             document.getElementById('csvOutput').textContent = csv;
             document.getElementById('outputSection').style.display = 'block';
 
+            // Download CSV
             const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement('a');
             const filename = folderName ? `bitwarden_${folderName.replace(/\s+/g, '_')}.csv` : 'bitwarden_export.csv';
@@ -1331,6 +1769,9 @@
             if (confirm('Are you sure you want to clear all data? This cannot be undone.')) {
                 document.getElementById('folderName').value = '';
                 document.getElementById('globalNotes').value = '';
+                document.getElementById('commonName').value = '';
+                document.getElementById('sameNameToggle').checked = false;
+                document.getElementById('commonNameField').classList.remove('active');
                 document.getElementById('sitesContainer').innerHTML = '';
                 document.getElementById('credentialsContainer').innerHTML = '';
                 document.getElementById('outputSection').style.display = 'none';
