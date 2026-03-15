@@ -41,6 +41,7 @@
             color: var(--md-sys-color-on-surface);
             min-height: 100vh;
             padding: 1.25rem 1rem;
+            padding-top: 5.5rem;
             line-height: 1.5;
             position: relative;
             overflow-x: hidden;
@@ -86,6 +87,7 @@
             text-align: center;
             margin-bottom: 1.5rem;
             animation: slideDown 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            padding-top: 0;
         }
 
         @keyframes slideDown {
@@ -97,6 +99,159 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        /* Navigation Header with Liquid Glass Effect */
+        .nav-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 20, 25, 0.7);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(101, 171, 255, 0.15);
+            padding: 0.85rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3), 
+                        inset 0 1px 0 rgba(255, 255, 255, 0.05),
+                        0 8px 32px rgba(101, 171, 255, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(101, 171, 255, 0.6) 20%,
+                rgba(101, 171, 255, 0.8) 50%, 
+                rgba(101, 171, 255, 0.6) 80%,
+                transparent 100%);
+            opacity: 0.5;
+        }
+
+        .nav-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, 
+                rgba(101, 171, 255, 0.05) 0%, 
+                transparent 100%);
+            pointer-events: none;
+        }
+
+        .nav-header-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (min-width: 1024px) {
+            .nav-header-wrapper {
+                padding: 0 10%;
+            }
+        }
+
+        @media (min-width: 1440px) {
+            .nav-header-wrapper {
+                padding: 0 20%;
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            flex: 1;
+        }
+
+        .nav-link {
+            padding: 0.45rem 1rem;
+            background: rgba(101, 171, 255, 0.08);
+            border: 1px solid rgba(101, 171, 255, 0.15);
+            border-radius: 50px;
+            color: var(--md-sys-color-on-surface-variant);
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-link:hover {
+            background: rgba(101, 171, 255, 0.15);
+            border-color: var(--md-sys-color-primary);
+            color: var(--md-sys-color-primary);
+            transform: translateY(-1px);
+        }
+
+        .nav-link.active {
+            background: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+            border-color: var(--md-sys-color-primary);
+        }
+
+        .nav-link .material-symbols-rounded {
+            font-size: 1rem;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .password-toggle {
+            padding: 0.45rem 1rem;
+            background: rgba(101, 171, 255, 0.08);
+            border: 1px solid rgba(101, 171, 255, 0.15);
+            border-radius: 50px;
+            color: var(--md-sys-color-on-surface-variant);
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .password-toggle:hover {
+            background: rgba(101, 171, 255, 0.15);
+            border-color: var(--md-sys-color-primary);
+            color: var(--md-sys-color-primary);
+        }
+
+        .password-toggle.active {
+            background: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+            border-color: var(--md-sys-color-primary);
+        }
+
+        .password-toggle .material-symbols-rounded {
+            font-size: 1rem;
         }
 
         h1 {
@@ -380,6 +535,49 @@
             border-color: var(--md-sys-color-primary);
         }
 
+        .btn-ai {
+            background: linear-gradient(135deg, 
+                #667eea 0%, 
+                #764ba2 50%, 
+                #f093fb 100%);
+            color: white;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-ai::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .btn-ai:hover {
+            background: linear-gradient(135deg, 
+                #7c8ef5 0%, 
+                #8759b3 50%, 
+                #f5a9fc 100%);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+            transform: translateY(-2px);
+        }
+
         .btn-remove {
             background: transparent;
             color: var(--md-sys-color-error);
@@ -551,7 +749,27 @@
             line-height: 1.4;
         }
 
+        .help-text code {
+            background: var(--md-sys-color-surface-variant);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--md-sys-color-primary);
+            border: 1px solid var(--md-sys-color-outline-variant);
+        }
+
+        /* Password masking */
+        input.password-masked {
+            -webkit-text-security: disc;
+            text-security: disc;
+        }
+
         @media (max-width: 767px) {
+            body {
+                padding-top: 8rem;
+            }
+
             h1 {
                 font-size: 1.75rem;
             }
@@ -566,6 +784,30 @@
             }
 
             .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .nav-header {
+                padding: 0.75rem;
+            }
+
+            .nav-header-wrapper {
+                flex-direction: column;
+                gap: 0.65rem;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .nav-link {
+                font-size: 0.75rem;
+                padding: 0.4rem 0.85rem;
+            }
+
+            .nav-actions {
                 width: 100%;
                 justify-content: center;
             }
@@ -587,8 +829,38 @@
             100% Client-Side - Your Data Never Leaves Your Device
         </div>
 
+        <!-- Navigation Header -->
+        <div class="nav-header">
+            <div class="nav-header-wrapper">
+                <div class="nav-links">
+                    <a href="#folder" class="nav-link" onclick="scrollToSection('folder-section'); return false;">
+                        <span class="material-symbols-rounded">folder</span>
+                        Folder
+                    </a>
+                    <a href="#credentials" class="nav-link" onclick="scrollToSection('credentials-section'); return false;">
+                        <span class="material-symbols-rounded">badge</span>
+                        Credentials
+                    </a>
+                    <a href="#websites" class="nav-link" onclick="scrollToSection('websites-section'); return false;">
+                        <span class="material-symbols-rounded">language</span>
+                        Websites
+                    </a>
+                    <a href="#notes" class="nav-link" onclick="scrollToSection('notes-section'); return false;">
+                        <span class="material-symbols-rounded">note</span>
+                        Notes
+                    </a>
+                </div>
+                <div class="nav-actions">
+                    <button class="password-toggle" id="passwordToggle" onclick="togglePasswordVisibility()">
+                        <span class="material-symbols-rounded">visibility_off</span>
+                        <span id="toggleText">Hide</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <div class="main-grid">
-            <div class="card folder-section">
+            <div class="card folder-section" id="folder-section">
                 <div class="card-header">
                     <span class="material-symbols-rounded">folder</span>
                     <h2 class="card-title">Folder</h2>
@@ -601,19 +873,9 @@
                 </div>
             </div>
 
-            <div class="card websites-section">
-                <div class="card-header">
-                    <span class="material-symbols-rounded">language</span>
-                    <h2 class="card-title">Websites</h2>
-                </div>
-                <div id="sitesContainer"></div>
-                <button class="btn btn-secondary" onclick="addSite()">
-                    <span class="material-symbols-rounded">add</span>
-                    Add Website
-                </button>
-            </div>
+            <div style="grid-column: 1 / -1;"></div>
 
-            <div class="card credentials-section">
+            <div class="card credentials-section" id="credentials-section" style="grid-column: 1 / -1;">
                 <div class="card-header">
                     <span class="material-symbols-rounded">badge</span>
                     <h2 class="card-title">Credentials</h2>
@@ -624,14 +886,32 @@
                         <span class="material-symbols-rounded">add</span>
                         Add Credential
                     </button>
-                    <button class="btn btn-secondary" onclick="openAutoExtract()">
+                    <button class="btn btn-ai" onclick="openAutoExtractCredentials()">
                         <span class="material-symbols-rounded">auto_awesome</span>
                         Auto Extract
                     </button>
                 </div>
             </div>
 
-            <div class="card notes-section">
+            <div class="card websites-section" id="websites-section" style="grid-column: 1 / -1;">
+                <div class="card-header">
+                    <span class="material-symbols-rounded">language</span>
+                    <h2 class="card-title">Websites</h2>
+                </div>
+                <div id="sitesContainer"></div>
+                <div class="button-group" style="margin-top: 0.65rem;">
+                    <button class="btn btn-secondary" onclick="addSite()">
+                        <span class="material-symbols-rounded">add</span>
+                        Add Website
+                    </button>
+                    <button class="btn btn-ai" onclick="openAutoExtractWebsites()">
+                        <span class="material-symbols-rounded">auto_awesome</span>
+                        Auto Extract
+                    </button>
+                </div>
+            </div>
+
+            <div class="card notes-section" id="notes-section" style="grid-column: 1 / -1;">
                 <div class="card-header">
                     <span class="material-symbols-rounded">note</span>
                     <h2 class="card-title">Notes (Optional)</h2>
@@ -644,7 +924,7 @@
                 </div>
             </div>
 
-            <div class="card actions-section">
+            <div class="card actions-section" style="grid-column: 1 / -1;">
                 <div class="button-group">
                     <button class="btn btn-primary" onclick="generateCSV()">
                         <span class="material-symbols-rounded">download</span>
@@ -679,33 +959,68 @@
         </div>
     </div>
 
-    <!-- Auto Extract Modal -->
-    <div class="modal" id="autoExtractModal">
+    <!-- Auto Extract Credentials Modal -->
+    <div class="modal" id="autoExtractCredentialsModal">
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title">Auto Extract Credentials</h3>
-                <button class="btn btn-remove" onclick="closeAutoExtract()">
+                <button class="btn btn-remove" onclick="closeAutoExtractCredentials()">
                     <span class="material-symbols-rounded">close</span>
                 </button>
             </div>
             <div class="help-text">
-                Paste your credentials in the format:<br>
-                <code>email/username</code><br>
-                <code>password</code><br>
+                Paste your credentials with each username/email and password on separate lines:<br><br>
+                <code>A25END03@sjctnc.edu.in</code><br>
+                <code>A25END03</code><br>
                 <br>
-                <code>next email/username</code><br>
-                <code>next password</code><br>
-                (blank lines will be ignored)
+                <code>A25ACD07@sjctnc.edu.in</code><br>
+                <code>A25ACD07</code><br>
+                <br>
+                <em>(Blank lines will be ignored)</em>
             </div>
             <div class="input-group">
                 <div class="input-wrapper">
-                    <textarea id="autoExtractText" placeholder=" "></textarea>
-                    <label for="autoExtractText" class="textarea-label">Paste credentials here</label>
+                    <textarea id="autoExtractCredentialsText" placeholder=" "></textarea>
+                    <label for="autoExtractCredentialsText" class="textarea-label">Paste credentials here</label>
                 </div>
             </div>
             <div class="modal-actions">
-                <button class="btn btn-secondary" onclick="closeAutoExtract()">Cancel</button>
-                <button class="btn btn-primary" onclick="processAutoExtract()">
+                <button class="btn btn-secondary" onclick="closeAutoExtractCredentials()">Cancel</button>
+                <button class="btn btn-primary" onclick="processAutoExtractCredentials()">
+                    <span class="material-symbols-rounded">check</span>
+                    Extract
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auto Extract Websites Modal -->
+    <div class="modal" id="autoExtractWebsitesModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Auto Extract Websites</h3>
+                <button class="btn btn-remove" onclick="closeAutoExtractWebsites()">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
+            </div>
+            <div class="help-text">
+                Paste your website URLs, one per line:<br><br>
+                <code>https://example.com</code><br>
+                <code>https://google.com</code><br>
+                <code>facebook.com</code><br>
+                <code>github.com/username</code><br>
+                <br>
+                <em>(Blank lines will be ignored, http/https optional)</em>
+            </div>
+            <div class="input-group">
+                <div class="input-wrapper">
+                    <textarea id="autoExtractWebsitesText" placeholder=" "></textarea>
+                    <label for="autoExtractWebsitesText" class="textarea-label">Paste website URLs here</label>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeAutoExtractWebsites()">Cancel</button>
+                <button class="btn btn-primary" onclick="processAutoExtractWebsites()">
                     <span class="material-symbols-rounded">check</span>
                     Extract
                 </button>
@@ -716,6 +1031,37 @@
     <script>
         let siteCount = 0;
         let credentialCount = 0;
+        let passwordsHidden = false;
+
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function togglePasswordVisibility() {
+            passwordsHidden = !passwordsHidden;
+            const toggle = document.getElementById('passwordToggle');
+            const toggleText = document.getElementById('toggleText');
+            const passwordInputs = document.querySelectorAll('.cred-password');
+            
+            if (passwordsHidden) {
+                toggle.classList.add('active');
+                toggleText.textContent = 'Show';
+                toggle.querySelector('.material-symbols-rounded').textContent = 'visibility';
+                passwordInputs.forEach(input => {
+                    input.classList.add('password-masked');
+                });
+            } else {
+                toggle.classList.remove('active');
+                toggleText.textContent = 'Hide';
+                toggle.querySelector('.material-symbols-rounded').textContent = 'visibility_off';
+                passwordInputs.forEach(input => {
+                    input.classList.remove('password-masked');
+                });
+            }
+        }
 
         function addSite() {
             siteCount++;
@@ -764,7 +1110,7 @@
                     </div>
                     <div class="input-group">
                         <div class="input-wrapper">
-                            <input type="text" class="cred-password" id="cred-password-${credentialCount}" placeholder=" ">
+                            <input type="text" class="cred-password ${passwordsHidden ? 'password-masked' : ''}" id="cred-password-${credentialCount}" placeholder=" ">
                             <label for="cred-password-${credentialCount}">Password</label>
                         </div>
                     </div>
@@ -785,18 +1131,19 @@
             }
         }
 
-        function openAutoExtract() {
-            document.getElementById('autoExtractModal').classList.add('active');
-            document.getElementById('autoExtractText').value = '';
-            document.getElementById('autoExtractText').focus();
+        // Auto-extract credentials functions
+        function openAutoExtractCredentials() {
+            document.getElementById('autoExtractCredentialsModal').classList.add('active');
+            document.getElementById('autoExtractCredentialsText').value = '';
+            document.getElementById('autoExtractCredentialsText').focus();
         }
 
-        function closeAutoExtract() {
-            document.getElementById('autoExtractModal').classList.remove('active');
+        function closeAutoExtractCredentials() {
+            document.getElementById('autoExtractCredentialsModal').classList.remove('active');
         }
 
-        function processAutoExtract() {
-            const text = document.getElementById('autoExtractText').value;
+        function processAutoExtractCredentials() {
+            const text = document.getElementById('autoExtractCredentialsText').value;
             const lines = text.split('\n').map(l => l.trim()).filter(l => l);
             
             if (lines.length === 0) {
@@ -808,7 +1155,6 @@
             for (let i = 0; i < lines.length; i += 2) {
                 if (i + 1 < lines.length) {
                     addCredential();
-                    // Get the last added credential
                     const lastCred = document.querySelector(`#cred-${credentialCount}`);
                     if (lastCred) {
                         lastCred.querySelector('.cred-username').value = lines[i];
@@ -824,7 +1170,39 @@
                 }
             }
 
-            closeAutoExtract();
+            closeAutoExtractCredentials();
+        }
+
+        // Auto-extract websites functions
+        function openAutoExtractWebsites() {
+            document.getElementById('autoExtractWebsitesModal').classList.add('active');
+            document.getElementById('autoExtractWebsitesText').value = '';
+            document.getElementById('autoExtractWebsitesText').focus();
+        }
+
+        function closeAutoExtractWebsites() {
+            document.getElementById('autoExtractWebsitesModal').classList.remove('active');
+        }
+
+        function processAutoExtractWebsites() {
+            const text = document.getElementById('autoExtractWebsitesText').value;
+            const lines = text.split('\n').map(l => l.trim()).filter(l => l);
+            
+            if (lines.length === 0) {
+                alert('Please paste some website URLs');
+                return;
+            }
+
+            // Add each URL as a website entry
+            lines.forEach(url => {
+                addSite();
+                const lastSite = document.querySelector(`#site-${siteCount}`);
+                if (lastSite) {
+                    lastSite.querySelector('.site-url').value = url;
+                }
+            });
+
+            closeAutoExtractWebsites();
         }
 
         function escapeCSV(str) {
