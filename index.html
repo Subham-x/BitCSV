@@ -40,8 +40,8 @@
             background: linear-gradient(135deg, #0a0e13 0%, #1a1f26 50%, #0f1419 100%);
             color: var(--md-sys-color-on-surface);
             min-height: 100vh;
-            padding: 1.5rem 1rem;
-            line-height: 1.6;
+            padding: 1.25rem 1rem;
+            line-height: 1.5;
             position: relative;
             overflow-x: hidden;
         }
@@ -64,15 +64,27 @@
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1400px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
         }
 
+        @media (min-width: 1024px) {
+            .container {
+                padding: 0 10%;
+            }
+        }
+
+        @media (min-width: 1440px) {
+            .container {
+                padding: 0 20%;
+            }
+        }
+
         header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             animation: slideDown 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -88,19 +100,19 @@
         }
 
         h1 {
-            font-size: 2.25rem;
+            font-size: 2rem;
             font-weight: 700;
             background: linear-gradient(135deg, var(--md-sys-color-primary) 0%, #88c0ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 0.35rem;
+            margin-bottom: 0.3rem;
             letter-spacing: -0.02em;
         }
 
         .subtitle {
             color: var(--md-sys-color-on-surface-variant);
-            font-size: 1rem;
+            font-size: 0.875rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -111,14 +123,44 @@
             font-size: 1.2rem;
         }
 
+        .privacy-badge {
+            background: rgba(125, 216, 125, 0.1);
+            color: var(--md-sys-color-success);
+            padding: 0.4rem 0.9rem;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid rgba(125, 216, 125, 0.3);
+            margin-bottom: 1.25rem;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .credentials-section,
+            .notes-section,
+            .actions-section {
+                grid-column: 1 / -1;
+            }
+        }
+
         .card {
             background: var(--md-sys-color-surface-container);
-            border-radius: 20px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
+            border-radius: 16px;
+            padding: 1.25rem;
             border: 1px solid var(--md-sys-color-outline-variant);
-            box-shadow: 0 4px 16px var(--md-sys-color-shadow);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px var(--md-sys-color-shadow);
             animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             animation-fill-mode: both;
         }
@@ -134,19 +176,10 @@
             }
         }
 
-        .card:nth-child(1) { animation-delay: 0.1s; }
-        .card:nth-child(2) { animation-delay: 0.2s; }
-        .card:nth-child(3) { animation-delay: 0.3s; }
-
-        .card:hover {
-            border-color: var(--md-sys-color-primary);
-            box-shadow: 0 8px 24px rgba(101, 171, 255, 0.2);
-        }
-
         .card-header {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.65rem;
             margin-bottom: 1rem;
             padding-bottom: 0.75rem;
             border-bottom: 1px solid var(--md-sys-color-outline-variant);
@@ -154,17 +187,17 @@
 
         .card-header .material-symbols-rounded {
             color: var(--md-sys-color-primary);
-            font-size: 1.5rem;
+            font-size: 1.3rem;
         }
 
         .card-title {
-            font-size: 1.125rem;
+            font-size: 1rem;
             font-weight: 600;
             color: var(--md-sys-color-on-surface);
         }
 
         .input-group {
-            margin-bottom: 1rem;
+            margin-bottom: 0.85rem;
             position: relative;
         }
 
@@ -178,7 +211,7 @@
             top: 50%;
             transform: translateY(-50%);
             font-weight: 500;
-            font-size: 1rem;
+            font-size: 0.875rem;
             color: var(--md-sys-color-on-surface-variant);
             transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             pointer-events: none;
@@ -194,15 +227,15 @@
         input[type="text"],
         textarea {
             width: 100%;
-            padding: 1rem;
-            padding-top: 1.5rem;
+            padding: 0.85rem;
+            padding-top: 1.35rem;
             background: var(--md-sys-color-surface-variant);
             border: 1px solid var(--md-sys-color-outline-variant);
             border-radius: 8px 8px 0 0;
             border-bottom: 2px solid var(--md-sys-color-outline);
             color: var(--md-sys-color-on-surface);
             font-family: 'Rubik', sans-serif;
-            font-size: 1rem;
+            font-size: 0.875rem;
             transition: all 0.2s ease;
         }
 
@@ -212,83 +245,115 @@
         textarea:not(:placeholder-shown) {
             outline: none;
             border-bottom-color: var(--md-sys-color-primary);
-            border-bottom-width: 2px;
         }
 
         input[type="text"]:focus + label,
         input[type="text"]:not(:placeholder-shown) + label,
         textarea:focus + label,
         textarea:not(:placeholder-shown) + label {
-            top: 0.5rem;
-            font-size: 0.75rem;
+            top: 0.4rem;
+            font-size: 0.7rem;
             color: var(--md-sys-color-primary);
             transform: translateY(0);
         }
 
         textarea:focus + label.textarea-label,
         textarea:not(:placeholder-shown) + label.textarea-label {
-            top: 0.5rem;
+            top: 0.4rem;
         }
 
         textarea {
             min-height: 70px;
             resize: vertical;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.875rem;
-            padding-top: 1.5rem;
+            font-size: 0.8rem;
+            padding-top: 1.35rem;
         }
 
-        .site-entry,
-        .credential-entry {
-            background: var(--md-sys-color-surface-variant);
-            padding: 1rem;
-            border-radius: 12px;
-            margin-bottom: 0.75rem;
-            border: 1px solid var(--md-sys-color-outline-variant);
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .site-entry:hover,
-        .credential-entry:hover {
-            border-color: var(--md-sys-color-primary);
-            transform: translateX(4px);
-        }
-
-        .entry-header {
+        /* Site entries - minimal, borderless */
+        .site-entry {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 0.75rem;
+            gap: 0.75rem;
+            margin-bottom: 0.6rem;
         }
 
-        .entry-number {
+        .site-badge {
             background: var(--md-sys-color-primary);
             color: var(--md-sys-color-on-primary);
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 600;
-            font-size: 0.875rem;
+            font-size: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .site-url-wrapper {
+            flex: 1;
+        }
+
+        /* Credential entries - side-by-side with badge on left */
+        .credential-entry {
+            background: var(--md-sys-color-surface-variant);
+            padding: 0.85rem;
+            border-radius: 10px;
+            margin-bottom: 0.6rem;
+            border: 1px solid var(--md-sys-color-outline-variant);
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            transition: all 0.2s ease;
+        }
+
+        .credential-entry:hover {
+            border-color: var(--md-sys-color-primary);
+        }
+
+        .credential-badge {
+            background: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .credential-fields {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.85rem;
+            flex: 1;
+        }
+
+        @media (max-width: 767px) {
+            .credential-fields {
+                grid-template-columns: 1fr;
+            }
         }
 
         .btn {
-            padding: 0.625rem 1.25rem;
+            padding: 0.55rem 1.1rem;
             border: none;
-            border-radius: 20px;
+            border-radius: 18px;
             font-family: 'Rubik', sans-serif;
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.45rem;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.04em;
             white-space: nowrap;
         }
 
@@ -300,12 +365,8 @@
 
         .btn-primary:hover {
             background: #7db8ff;
-            box-shadow: 0 4px 16px rgba(101, 171, 255, 0.4);
-            transform: translateY(-2px);
-        }
-
-        .btn-primary:active {
-            transform: translateY(0);
+            box-shadow: 0 4px 12px rgba(101, 171, 255, 0.4);
+            transform: translateY(-1px);
         }
 
         .btn-secondary {
@@ -322,23 +383,29 @@
         .btn-remove {
             background: transparent;
             color: var(--md-sys-color-error);
-            padding: 0.5rem;
+            padding: 0.35rem;
             border-radius: 50%;
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
 
         .btn-remove:hover {
             background: rgba(255, 180, 171, 0.1);
         }
 
+        .btn-remove .material-symbols-rounded {
+            font-size: 1.1rem;
+        }
+
         .button-group {
             display: flex;
-            gap: 1rem;
+            gap: 0.85rem;
             flex-wrap: wrap;
+            align-items: center;
         }
 
         .output-section {
@@ -348,101 +415,154 @@
         .output-box {
             background: var(--md-sys-color-surface-variant);
             border: 2px solid var(--md-sys-color-outline-variant);
-            border-radius: 12px;
-            padding: 1rem;
-            position: relative;
+            border-radius: 10px;
+            padding: 0.85rem;
         }
 
         .output-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.65rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .output-header label {
+            position: static;
+            transform: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--md-sys-color-on-surface);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
         }
 
         .csv-output {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.875rem;
+            font-size: 0.75rem;
             color: var(--md-sys-color-success);
             white-space: pre-wrap;
             word-break: break-all;
-            max-height: 300px;
+            max-height: 250px;
             overflow-y: auto;
-            padding: 1rem;
+            padding: 0.85rem;
             background: var(--md-sys-color-surface);
-            border-radius: 8px;
+            border-radius: 6px;
             border: 1px solid var(--md-sys-color-outline-variant);
         }
 
+        @media (min-width: 1024px) {
+            .csv-output {
+                max-height: 350px;
+            }
+        }
+
         .csv-output::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
 
         .csv-output::-webkit-scrollbar-track {
             background: var(--md-sys-color-surface-variant);
-            border-radius: 4px;
+            border-radius: 3px;
         }
 
         .csv-output::-webkit-scrollbar-thumb {
             background: var(--md-sys-color-primary);
-            border-radius: 4px;
-        }
-
-        .privacy-badge {
-            background: rgba(125, 216, 125, 0.1);
-            color: var(--md-sys-color-success);
-            padding: 0.5rem 1rem;
-            border-radius: 100px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: 1px solid rgba(125, 216, 125, 0.3);
-            margin-bottom: 1rem;
+            border-radius: 3px;
         }
 
         .privacy-notice {
             background: rgba(101, 171, 255, 0.05);
             border: 1px solid rgba(101, 171, 255, 0.2);
-            border-radius: 12px;
-            padding: 0.875rem;
-            margin-top: 1rem;
-            font-size: 0.875rem;
+            border-radius: 10px;
+            padding: 0.75rem;
+            margin-top: 0.85rem;
+            font-size: 0.8rem;
             color: var(--md-sys-color-on-surface-variant);
             display: flex;
             align-items: start;
-            gap: 0.75rem;
+            gap: 0.65rem;
         }
 
         .privacy-notice .material-symbols-rounded {
             color: var(--md-sys-color-primary);
             flex-shrink: 0;
+            font-size: 1.1rem;
         }
 
-        .empty-state {
-            text-align: center;
-            padding: 3rem 1rem;
+        /* Auto-extract modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--md-sys-color-surface-container);
+            border-radius: 20px;
+            padding: 1.5rem;
+            max-width: 600px;
+            width: 100%;
+            border: 1px solid var(--md-sys-color-outline-variant);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .modal-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--md-sys-color-on-surface);
+        }
+
+        .modal textarea {
+            min-height: 200px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: flex-end;
+            margin-top: 1rem;
+        }
+
+        .help-text {
+            font-size: 0.75rem;
             color: var(--md-sys-color-on-surface-variant);
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
         }
 
-        .empty-state .material-symbols-rounded {
-            font-size: 4rem;
-            opacity: 0.3;
-            margin-bottom: 1rem;
-        }
-
-        @media (max-width: 768px) {
+        @media (max-width: 767px) {
             h1 {
-                font-size: 2rem;
+                font-size: 1.75rem;
             }
 
             .card {
-                padding: 1.5rem;
+                padding: 1rem;
             }
 
             .button-group {
                 flex-direction: column;
+                width: 100%;
             }
 
             .btn {
@@ -464,77 +584,131 @@
 
         <div class="privacy-badge">
             <span class="material-symbols-rounded">verified_user</span>
-            100% Client-Side Processing - Your Data Never Leaves Your Device
+            100% Client-Side - Your Data Never Leaves Your Device
         </div>
 
-        <div class="card">
-            <div class="card-header">
-                <span class="material-symbols-rounded">folder</span>
-                <h2 class="card-title">Folder Configuration</h2>
+        <div class="main-grid">
+            <div class="card folder-section">
+                <div class="card-header">
+                    <span class="material-symbols-rounded">folder</span>
+                    <h2 class="card-title">Folder</h2>
+                </div>
+                <div class="input-group">
+                    <div class="input-wrapper">
+                        <input type="text" id="folderName" placeholder=" ">
+                        <label for="folderName">Folder Name</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card websites-section">
+                <div class="card-header">
+                    <span class="material-symbols-rounded">language</span>
+                    <h2 class="card-title">Websites</h2>
+                </div>
+                <div id="sitesContainer"></div>
+                <button class="btn btn-secondary" onclick="addSite()">
+                    <span class="material-symbols-rounded">add</span>
+                    Add Website
+                </button>
+            </div>
+
+            <div class="card credentials-section">
+                <div class="card-header">
+                    <span class="material-symbols-rounded">badge</span>
+                    <h2 class="card-title">Credentials</h2>
+                </div>
+                <div id="credentialsContainer"></div>
+                <div class="button-group" style="margin-top: 0.65rem;">
+                    <button class="btn btn-secondary" onclick="addCredential()">
+                        <span class="material-symbols-rounded">add</span>
+                        Add Credential
+                    </button>
+                    <button class="btn btn-secondary" onclick="openAutoExtract()">
+                        <span class="material-symbols-rounded">auto_awesome</span>
+                        Auto Extract
+                    </button>
+                </div>
+            </div>
+
+            <div class="card notes-section">
+                <div class="card-header">
+                    <span class="material-symbols-rounded">note</span>
+                    <h2 class="card-title">Notes (Optional)</h2>
+                </div>
+                <div class="input-group">
+                    <div class="input-wrapper">
+                        <textarea id="globalNotes" placeholder=" " style="min-height: 85px;"></textarea>
+                        <label for="globalNotes" class="textarea-label">Additional notes for all entries</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card actions-section">
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="generateCSV()">
+                        <span class="material-symbols-rounded">download</span>
+                        Generate & Download CSV
+                    </button>
+                    <button class="btn btn-secondary" onclick="clearAll()">
+                        <span class="material-symbols-rounded">delete</span>
+                        Clear All
+                    </button>
+                </div>
+
+                <div class="output-section" id="outputSection" style="display: none;">
+                    <div class="output-box">
+                        <div class="output-header">
+                            <label>CSV Preview</label>
+                            <button class="btn btn-secondary" onclick="copyToClipboard()">
+                                <span class="material-symbols-rounded">content_copy</span>
+                                Copy
+                            </button>
+                        </div>
+                        <pre class="csv-output" id="csvOutput"></pre>
+                    </div>
+                </div>
+
+                <div class="privacy-notice">
+                    <span class="material-symbols-rounded">info</span>
+                    <div>
+                        <strong>Privacy & Security:</strong> All processing happens entirely in your browser. No data is transmitted to any server.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auto Extract Modal -->
+    <div class="modal" id="autoExtractModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Auto Extract Credentials</h3>
+                <button class="btn btn-remove" onclick="closeAutoExtract()">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
+            </div>
+            <div class="help-text">
+                Paste your credentials in the format:<br>
+                <code>email/username</code><br>
+                <code>password</code><br>
+                <br>
+                <code>next email/username</code><br>
+                <code>next password</code><br>
+                (blank lines will be ignored)
             </div>
             <div class="input-group">
                 <div class="input-wrapper">
-                    <input type="text" id="folderName" placeholder=" ">
-                    <label for="folderName">Folder Name</label>
+                    <textarea id="autoExtractText" placeholder=" "></textarea>
+                    <label for="autoExtractText" class="textarea-label">Paste credentials here</label>
                 </div>
             </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header">
-                <span class="material-symbols-rounded">language</span>
-                <h2 class="card-title">Websites / Services</h2>
-            </div>
-            <div id="sitesContainer"></div>
-            <button class="btn btn-secondary" onclick="addSite()">
-                <span class="material-symbols-rounded">add</span>
-                Add Website
-            </button>
-        </div>
-
-        <div class="card">
-            <div class="card-header">
-                <span class="material-symbols-rounded">badge</span>
-                <h2 class="card-title">Credentials (Username & Password Pairs)</h2>
-            </div>
-            <div id="credentialsContainer"></div>
-            <button class="btn btn-secondary" onclick="addCredential()">
-                <span class="material-symbols-rounded">add</span>
-                Add Credential Pair
-            </button>
-        </div>
-
-        <div class="card">
-            <div class="button-group">
-                <button class="btn btn-primary" onclick="generateCSV()">
-                    <span class="material-symbols-rounded">download</span>
-                    Generate & Download CSV
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeAutoExtract()">Cancel</button>
+                <button class="btn btn-primary" onclick="processAutoExtract()">
+                    <span class="material-symbols-rounded">check</span>
+                    Extract
                 </button>
-                <button class="btn btn-secondary" onclick="clearAll()">
-                    <span class="material-symbols-rounded">delete</span>
-                    Clear All
-                </button>
-            </div>
-
-            <div class="output-section" id="outputSection" style="display: none;">
-                <div class="output-box">
-                    <div class="output-header">
-                        <label>CSV Preview</label>
-                        <button class="btn btn-secondary" onclick="copyToClipboard()">
-                            <span class="material-symbols-rounded">content_copy</span>
-                            Copy
-                        </button>
-                    </div>
-                    <pre class="csv-output" id="csvOutput"></pre>
-                </div>
-            </div>
-
-            <div class="privacy-notice">
-                <span class="material-symbols-rounded">info</span>
-                <div>
-                    <strong>Privacy & Security:</strong> All processing happens entirely in your browser. No data is transmitted to any server. 
-                    Your passwords and credentials remain completely private and secure on your device.
-                </div>
             </div>
         </div>
     </div>
@@ -550,30 +724,16 @@
             siteEntry.className = 'site-entry';
             siteEntry.id = `site-${siteCount}`;
             siteEntry.innerHTML = `
-                <div class="entry-header">
-                    <div class="entry-number">${siteCount}</div>
-                    <button class="btn btn-remove" onclick="removeSite(${siteCount})" title="Remove">
-                        <span class="material-symbols-rounded">close</span>
-                    </button>
-                </div>
-                <div class="input-group">
-                    <div class="input-wrapper">
-                        <input type="text" class="site-name" id="site-name-${siteCount}" placeholder=" ">
-                        <label for="site-name-${siteCount}">Website Name</label>
-                    </div>
-                </div>
-                <div class="input-group">
+                <div class="site-badge">${siteCount}</div>
+                <div class="input-group site-url-wrapper">
                     <div class="input-wrapper">
                         <input type="text" class="site-url" id="site-url-${siteCount}" placeholder=" ">
-                        <label for="site-url-${siteCount}">URL</label>
+                        <label for="site-url-${siteCount}">Website URL</label>
                     </div>
                 </div>
-                <div class="input-group">
-                    <div class="input-wrapper">
-                        <textarea class="site-notes" id="site-notes-${siteCount}" placeholder=" "></textarea>
-                        <label for="site-notes-${siteCount}" class="textarea-label">Notes (Optional)</label>
-                    </div>
-                </div>
+                <button class="btn btn-remove" onclick="removeSite(${siteCount})" title="Remove">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
             `;
             container.appendChild(siteEntry);
         }
@@ -581,9 +741,9 @@
         function removeSite(id) {
             const element = document.getElementById(`site-${id}`);
             if (element) {
-                element.style.transform = 'translateX(-100%)';
                 element.style.opacity = '0';
-                setTimeout(() => element.remove(), 300);
+                element.style.transform = 'translateX(-20px)';
+                setTimeout(() => element.remove(), 200);
             }
         }
 
@@ -594,24 +754,24 @@
             credEntry.className = 'credential-entry';
             credEntry.id = `cred-${credentialCount}`;
             credEntry.innerHTML = `
-                <div class="entry-header">
-                    <div class="entry-number">${credentialCount}</div>
-                    <button class="btn btn-remove" onclick="removeCredential(${credentialCount})" title="Remove">
-                        <span class="material-symbols-rounded">close</span>
-                    </button>
-                </div>
-                <div class="input-group">
-                    <div class="input-wrapper">
-                        <input type="text" class="cred-username" id="cred-username-${credentialCount}" placeholder=" ">
-                        <label for="cred-username-${credentialCount}">Username / Email</label>
+                <div class="credential-badge">${credentialCount}</div>
+                <div class="credential-fields">
+                    <div class="input-group">
+                        <div class="input-wrapper">
+                            <input type="text" class="cred-username" id="cred-username-${credentialCount}" placeholder=" ">
+                            <label for="cred-username-${credentialCount}">Username / Email</label>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <div class="input-wrapper">
+                            <input type="text" class="cred-password" id="cred-password-${credentialCount}" placeholder=" ">
+                            <label for="cred-password-${credentialCount}">Password</label>
+                        </div>
                     </div>
                 </div>
-                <div class="input-group">
-                    <div class="input-wrapper">
-                        <input type="text" class="cred-password" id="cred-password-${credentialCount}" placeholder=" ">
-                        <label for="cred-password-${credentialCount}">Password</label>
-                    </div>
-                </div>
+                <button class="btn btn-remove" onclick="removeCredential(${credentialCount})" title="Remove">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
             `;
             container.appendChild(credEntry);
         }
@@ -619,10 +779,52 @@
         function removeCredential(id) {
             const element = document.getElementById(`cred-${id}`);
             if (element) {
-                element.style.transform = 'translateX(-100%)';
                 element.style.opacity = '0';
-                setTimeout(() => element.remove(), 300);
+                element.style.transform = 'translateX(-20px)';
+                setTimeout(() => element.remove(), 200);
             }
+        }
+
+        function openAutoExtract() {
+            document.getElementById('autoExtractModal').classList.add('active');
+            document.getElementById('autoExtractText').value = '';
+            document.getElementById('autoExtractText').focus();
+        }
+
+        function closeAutoExtract() {
+            document.getElementById('autoExtractModal').classList.remove('active');
+        }
+
+        function processAutoExtract() {
+            const text = document.getElementById('autoExtractText').value;
+            const lines = text.split('\n').map(l => l.trim()).filter(l => l);
+            
+            if (lines.length === 0) {
+                alert('Please paste some credentials');
+                return;
+            }
+
+            // Process pairs: every 2 lines = username, password
+            for (let i = 0; i < lines.length; i += 2) {
+                if (i + 1 < lines.length) {
+                    addCredential();
+                    // Get the last added credential
+                    const lastCred = document.querySelector(`#cred-${credentialCount}`);
+                    if (lastCred) {
+                        lastCred.querySelector('.cred-username').value = lines[i];
+                        lastCred.querySelector('.cred-password').value = lines[i + 1];
+                    }
+                } else {
+                    // Odd number, last line is just username
+                    addCredential();
+                    const lastCred = document.querySelector(`#cred-${credentialCount}`);
+                    if (lastCred) {
+                        lastCred.querySelector('.cred-username').value = lines[i];
+                    }
+                }
+            }
+
+            closeAutoExtract();
         }
 
         function escapeCSV(str) {
@@ -636,15 +838,12 @@
 
         function generateCSV() {
             const folderName = document.getElementById('folderName').value.trim();
+            const globalNotes = document.getElementById('globalNotes').value.trim();
             
-            // Get all sites
             const sites = Array.from(document.querySelectorAll('.site-entry')).map(entry => ({
-                name: entry.querySelector('.site-name')?.value.trim() || '',
-                url: entry.querySelector('.site-url')?.value.trim() || '',
-                notes: entry.querySelector('.site-notes')?.value.trim() || ''
-            })).filter(site => site.name || site.url);
+                url: entry.querySelector('.site-url')?.value.trim() || ''
+            })).filter(site => site.url);
 
-            // Get all credentials
             const credentials = Array.from(document.querySelectorAll('.credential-entry')).map(entry => ({
                 username: entry.querySelector('.cred-username')?.value.trim() || '',
                 password: entry.querySelector('.cred-password')?.value.trim() || ''
@@ -655,39 +854,47 @@
                 return;
             }
 
-            // Bitwarden CSV format header
             let csv = 'folder,favorite,type,name,notes,fields,reprompt,login_uri,login_username,login_password,login_totp\n';
 
-            // Generate entries for each combination of site and credential
             if (sites.length > 0 && credentials.length > 0) {
-                // Create entry for each site-credential combination
                 sites.forEach(site => {
                     credentials.forEach(cred => {
+                        let siteName = site.url;
+                        try {
+                            const urlObj = new URL(site.url.startsWith('http') ? site.url : 'https://' + site.url);
+                            siteName = urlObj.hostname.replace('www.', '');
+                        } catch (e) {}
+                        
                         const row = [
                             escapeCSV(folderName),
-                            '',  // favorite
+                            '',
                             'login',
-                            escapeCSV(site.name),
-                            escapeCSV(site.notes),
-                            '',  // fields
-                            '',  // reprompt
+                            escapeCSV(siteName),
+                            escapeCSV(globalNotes),
+                            '',
+                            '',
                             escapeCSV(site.url),
                             escapeCSV(cred.username),
                             escapeCSV(cred.password),
-                            ''   // totp
+                            ''
                         ];
                         csv += row.join(',') + '\n';
                     });
                 });
             } else if (sites.length > 0) {
-                // Only sites, no credentials
                 sites.forEach(site => {
+                    let siteName = site.url;
+                    try {
+                        const urlObj = new URL(site.url.startsWith('http') ? site.url : 'https://' + site.url);
+                        siteName = urlObj.hostname.replace('www.', '');
+                    } catch (e) {}
+                    
                     const row = [
                         escapeCSV(folderName),
                         '',
                         'login',
-                        escapeCSV(site.name),
-                        escapeCSV(site.notes),
+                        escapeCSV(siteName),
+                        escapeCSV(globalNotes),
                         '',
                         '',
                         escapeCSV(site.url),
@@ -698,14 +905,13 @@
                     csv += row.join(',') + '\n';
                 });
             } else {
-                // Only credentials, no sites
                 credentials.forEach((cred, idx) => {
                     const row = [
                         escapeCSV(folderName),
                         '',
                         'login',
                         escapeCSV(`Credential ${idx + 1}`),
-                        '',
+                        escapeCSV(globalNotes),
                         '',
                         '',
                         '',
@@ -717,11 +923,9 @@
                 });
             }
 
-            // Display preview
             document.getElementById('csvOutput').textContent = csv;
             document.getElementById('outputSection').style.display = 'block';
 
-            // Download CSV
             const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement('a');
             const filename = folderName ? `bitwarden_${folderName.replace(/\s+/g, '_')}.csv` : 'bitwarden_export.csv';
@@ -748,6 +952,7 @@
         function clearAll() {
             if (confirm('Are you sure you want to clear all data? This cannot be undone.')) {
                 document.getElementById('folderName').value = '';
+                document.getElementById('globalNotes').value = '';
                 document.getElementById('sitesContainer').innerHTML = '';
                 document.getElementById('credentialsContainer').innerHTML = '';
                 document.getElementById('outputSection').style.display = 'none';
