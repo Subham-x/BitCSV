@@ -5,9 +5,24 @@ BitCSV Generator is a privacy-first, 100% client-side web application designed t
 ## Links
 
 - 🔒 Privacy Policy: [PRIVACY.md](PRIVACY.md)
-- 🌐 Live Website: https://your-live-site-url
+- 🖼️ Screenshots : [IMAGES.md](IMAGES.md)
+- 🌐 Live Website: [https://your-live-site-url](https://subham-x.github.io/BitCSV/)
 - 📦 Releases: https://github.com/Subham-x/BitCSV/releases
 
+
+## 🚀 Why Use BitCSV?
+* When migrating credentials from a browser to Bitwarden, you may have multiple usernames for the same website.
+* Manually copying credentials and creating separate entries in Bitwarden can be slow and repetitive.
+* BitCSV allows you to add multiple usernames for the same site and automatically generate a Bitwarden-compatible CSV file.
+* This saves time compared to creating each entry manually inside Bitwarden.
+* 🔒 Privacy First:
+  * No data is collected
+  * Everything runs fully offline
+  * Your credentials never leave your browser
+ 
+## ⚠️ Security Note
+* Always handle credentials carefully and avoid sharing sensitive files publicly.
+* Delete `.csv` files after importing to BitWarden as passowords and notes are stored in **Plain text**.
 
 ## Features
 
@@ -26,6 +41,11 @@ BitCSV Generator is a privacy-first, 100% client-side web application designed t
 5. Click **Generate & Download CSV** when ready. Review the security notice and download the file securely.
 6. Open your Bitwarden Vault, go to **Tools → Import Data**, select `Bitwarden (csv)` as the format, and upload the generated CSV file.
 
+---
+
+⭐ If you find this tool useful, consider contributing or sharing it!
+
 ## Disclaimer
 
+---
 Ensure that you keep the generated CSV files secure on your device and dispose of them permanently after confirming a successful import into Bitwarden.
