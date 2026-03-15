@@ -5,7 +5,7 @@ BitCSV Generator is a privacy-first, 100% client-side web application designed t
 ## Links
 
 - 🔒 Privacy Policy: [PRIVACY.md](PRIVACY.md)
-- 🖼️ Screenshots : [IMAGES.md](IMAGES.md)
+- 🖼️ Screenshots : [FEATURES.md](FEATURES.md)
 - 🌐 Live Website: [https://your-live-site-url](https://subham-x.github.io/BitCSV/)
 - 📦 Releases: https://github.com/Subham-x/BitCSV/releases
 
